@@ -29,3 +29,29 @@ exec函数族的函数执行后，若exec调用成功，则整个进程跳转到
 - execv()
 - execvp()<br>
 注意：使用fflush()函数来刷新缓冲区
+
+---
+
+# 并发
+异步事件处理方式：查询法，中断处理法
+
+
+
+## 信号
+1. 信号的概念<br>
+信号时软件中断。
+命令 kill -l 查看信号，有标准信号(1-31)和实时信号。
+当代码异常终止或者运行出错时，会产生代码出错现场记录，其文件为core.进程号，所以可以使用core文件调试代码。
+命令:ulimit 设置core文件大小。
+
+signal()函数<br>
+信号的不可靠<br>
+可重入函数<br>
+信号的响应过程<br>
+信号常用函数:kill(),raise(),alarm(),pause(),system(),sleep()<br>
+信号集<br>
+信号屏蔽字/pending集的处理<br>
+扩展：sigsuepend(),sigaction(),setitimer()<br>
+实时信号<br>
+
+## 线程

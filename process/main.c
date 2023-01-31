@@ -13,7 +13,9 @@
 int main(void)
 {
     pid_t pid;
+    uid_t uid;
     int i,j,mark,n;
+    fprintf(stdout,"fu uid = %u\n",getuid());
 
     for(n = 0;n < FORK_N;n++){
         pid = fork();
@@ -22,7 +24,7 @@ int main(void)
             while(n--)
                 wait(NULL);
             
-            exit(0);
+            exit(1);
         }
 
         if(pid == 0){
@@ -35,8 +37,11 @@ int main(void)
                     }
                 }
 
-                if(mark == 1)
+                if(mark == 1){
                     fprintf(stdout,"[%d]%d is a prime number!\n",n,i);
+                    fprintf(stdout,"chrld uid = %u\n",getuid());
+                    //getuid();
+                }
             }
             exit(0);
         }
