@@ -44,13 +44,30 @@ exec函数族的函数执行后，若exec调用成功，则整个进程跳转到
 当代码异常终止或者运行出错时，会产生代码出错现场记录，其文件为core.进程号，所以可以使用core文件调试代码。
 命令:ulimit 设置core文件大小。
 
-signal()函数<br>
-信号的不可靠<br>
-可重入函数<br>
-信号的响应过程<br>
-信号常用函数:kill(),raise(),alarm(),pause(),system(),sleep()<br>
-信号集<br>
-信号屏蔽字/pending集的处理<br>
+2. signal()函数<br>
+signal(int sig,void(*func)(int));<br>
+func 有三种取值，1. SIG_IGN:忽略该信号  2. SIG_DFL：使用系统默认操作  3. 自定义响应函数指针<br>
+特别注意：**信号会打断阻塞的系统调用**
+
+
+3. 信号的不可靠<br>
+信号的行为不可靠。
+
+4. 可重入函数<br>
+解决信号的行为不可靠。（第一次调用没有结束就发生第二次信号处理函数调用）<br>
+可重入函数：第一次调用没有结束可处理第二次调用。<br>
+所有的系统调用都是可重入的，一部分库函数也是可以重入的，如：memcpy
+
+
+5. 信号的响应过程<br>
+标准信号的响应没有严格的顺序。
+
+
+6. 信号常用函数:kill(),raise(),alarm(),pause(),system(),sleep()<br>
+
+7. 信号集<br>
+
+8. 信号屏蔽字/pending集的处理<br>
 扩展：sigsuepend(),sigaction(),setitimer()<br>
 实时信号<br>
 
